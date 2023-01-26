@@ -12,8 +12,8 @@
     <div class="grid grid-cols-4 grow">
       <nav class="bg-red-500/10 p-4">
         <ContentNavigation v-slot="{ navigation }">
-          <ul class="sticky top-20">
-            <li v-for="link of navigation" :key="link._path">
+          <ul class="sticky top-20 flex flex-col-reverse gap-2">
+            <li v-for="link of navigation" :key="link._path" :class="{'order-first mt-2':link.title === 'About'}">
               <NuxtLink :to="link._path">🎀 {{ link.title }}</NuxtLink>
             </li>
           </ul>
