@@ -9,7 +9,7 @@
     <header class="p-4 flex border-b border-b-pink-700 sticky top-0 text-3xl bg-pink-900">
       <a href="/">🍱 bentobox.today</a>
     </header>
-    <div class="grid grid-cols-4 grow">
+    <div class="grid grid-cols-[9rem_1fr] grow">
       <nav class="bg-red-500/10 p-4">
         <ContentNavigation v-slot="{ navigation }">
           <ul class="sticky top-20 flex flex-col-reverse gap-2">
