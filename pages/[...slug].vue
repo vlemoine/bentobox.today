@@ -7,12 +7,14 @@
 
 <style lang="scss">
 .entry {
-  grid-template-columns: minmax(33.3vw, 1fr) 1fr;
+  grid-template-columns: minmax(33vw, calc(100vh - 10rem)) 1fr;
   grid-template-areas: 
             "a a"
             "b c"
             "b d"
-            "b e";
+            "b e"
+            "b f"
+            "b g";
   grid-column-gap: 2rem;
   h1 {
   @apply font-bold mb-4 text-2xl;
@@ -25,7 +27,7 @@ p:has(img) {
   grid-area: b;
 }
 ul {
-  @apply text-lg;
+  @apply mb-8 text-lg;
 }
 }
 
