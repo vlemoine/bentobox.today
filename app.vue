@@ -5,7 +5,7 @@
       <Link rel="icon" href="https://fav.farm/🍱"></Link>
       <Title>bentobox.today</Title>
     </Head>
-    <Body class="dark:bg-gray-900 text-black/80 dark:text-white"></Body>
+    <Body class="bg-gray-900 text-white"></Body>
     <header class="p-4 flex border-b border-b-pink-700 sticky top-0 text-3xl bg-pink-900">
       <a href="/">🍱 bentobox.today</a>
     </header>
