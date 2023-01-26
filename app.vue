@@ -2,6 +2,7 @@
   <div class="h-full flex flex-col">
     <Html lang="en-us"></Html>
     <Head>
+      <Link rel="icon" href="https://fav.farm/🍱"></Link>
       <Title>bentobox.today</Title>
     </Head>
     <Body class="dark:bg-gray-900 text-black/80 dark:text-white"></Body>
