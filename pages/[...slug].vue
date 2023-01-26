@@ -19,7 +19,7 @@
   grid-area: a;
 }
 h2 {
-  @apply mb-2 text-xl;
+  @apply font-bold mb-2 text-xl;
 }
 p:has(img) {
   grid-area: b;
