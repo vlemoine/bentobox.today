@@ -14,8 +14,8 @@
                 width="360"
                 height="360"
                 sizes="xs:480px sm:500px md:380px lg:260px xl:320px"
-                :src="photo(article.body.children).src"
-                :alt="photo(article.body.children).alt"
+                :src="article.img"
+                :alt="article.alt"
               />
               <h2 class="font-bold my-2">{{ article.title }}</h2>
             </NuxtLink>
