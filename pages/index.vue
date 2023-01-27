@@ -1,6 +1,8 @@
 <template>
-  <main class="gallery | p-8 grid gap-4 auto-rows-max">
-    <ContentList v-slot="{ list }">
+  <main class="p-4 sm:px-8">
+    <h1 class="text-lg font-bold mb-4">Past Boxes</h1>
+    <div class="gallery | grid gap-4 auto-rows-max">
+      <ContentList v-slot="{ list }">
       <template v-for="(article, i) in list" :key="article._path">
         <template v-if="article.title !== 'About'">
           <NuxtLink
@@ -17,6 +19,8 @@
         </template>
       </template>
     </ContentList>
+    </div>
+    
   </main>
 </template>
 
@@ -26,8 +30,8 @@ const photo = (arr) =>
 const order = (arr, i) => arr.length - i;
 </script>
 
-<style>
+<style lang="scss">
 .gallery {
-  grid-template-columns: repeat(auto-fill,  minmax(16rem, 1fr));
+  grid-template-columns: repeat(auto-fill,  minmax(240px, 1fr));
 }
 </style>
