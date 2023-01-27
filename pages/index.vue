@@ -11,7 +11,6 @@
               :style="`order:${order(list, i)}`"
             >
               <nuxt-picture
-                placeholder
                 width="360"
                 height="360"
                 sizes="xs:480px sm:500px md:380px lg:260px xl:320px"
