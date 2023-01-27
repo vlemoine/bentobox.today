@@ -6,7 +6,7 @@
       <Title>bentobox.today</Title>
     </Head>
     <Body class="bg-gray-900 text-white"></Body>
-    <header class="p-4 flex border-b border-b-pink-700 sticky top-0 text-3xl bg-pink-900">
+    <header class="p-4 flex border-b border-b-pink-700 sticky top-0 left-0 text-3xl bg-pink-900">
       <a href="/">🍱 bentobox.today</a>
     </header>
     <div class="grid grid-cols-[9rem_1fr] grow">
@@ -14,7 +14,7 @@
         <ContentNavigation v-slot="{ navigation }">
           <ul class="sticky top-20 flex flex-col-reverse gap-2">
             <li v-for="link of navigation" :key="link._path" :class="{'order-first mt-2':link.title === 'About'}">
-              <NuxtLink :to="link._path">🎀 {{ link.title }}</NuxtLink>
+              <NuxtLink :to="link._path" class="sm:text-sm">🎀 {{ link.title }}</NuxtLink>
             </li>
           </ul>
         </ContentNavigation>
