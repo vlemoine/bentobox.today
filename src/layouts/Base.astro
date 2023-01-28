@@ -23,7 +23,9 @@ const posts = await Astro.glob("../pages/posts/*.md");
     <Header />
     <div class="grid grid-cols-[auto_1fr] grow overflow-x-hidden">
       <Nav />
-      <main class="py-4 px-8"><slot /></main>
+      <main class="py-4 px-8">
+        <slot />
+      </main>
     </div>
   </body>
 </html>
