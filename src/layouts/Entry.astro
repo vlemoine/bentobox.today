@@ -2,9 +2,23 @@
 import Header from "@components/Header.astro";
 import Nav from "@components/Nav.astro";
 
-const {frontmatter} = Astro.props;
+import { Picture } from "@astrojs/image/components";
 
-// const posts = await Astro.glob("../pages/posts/*.md");
+const { frontmatter, headings, compiledContent } = Astro.props;
+
+const subheadings = headings.filter((h: any) => {
+  return h.depth === 2;
+});
+
+const lists = compiledContent()
+  .split("<ul>\n")
+  .map((t: string) => {
+    return t.split("</ul>");
+  })
+  .flat()
+  .filter((t: string) => {
+    return t.search("<li>") !== -1;
+  });
 ---
 
 <!DOCTYPE html>
@@ -20,7 +34,29 @@ const {frontmatter} = Astro.props;
     <Header />
     <div class="grid grid-cols-[auto_1fr] grow overflow-x-hidden">
       <Nav />
-      <main class="entry sm:grid py-4 px-8"><slot /></main>
+      <main class="entry sm:grid py-4 px-8">
+        <h1 id={headings[0].slug}>{headings[0].text}</h1>
+        <div class="img">
+          <Picture
+            widths={[400, 800, 1200]}
+            aspectRatio="1:1"
+            src={frontmatter.image.url}
+            alt={frontmatter.image.alt}
+            sizes="xs:480px sm:500px md:380px lg:260px xl:320px"
+          />
+        </div>
+        <h2 id={subheadings[0].slug}>{subheadings[0].text}</h2>
+        <ul set:html={lists[0]} />
+        {
+          lists[1] && (
+            <>
+              <h2 id={subheadings[1].slug}>{subheadings[1].text}</h2>
+              <ul set:html={lists[1]} />
+            </>
+          )
+        }
+        <!-- <slot /> -->
+      </main>
     </div>
   </body>
 </html>
@@ -42,7 +78,8 @@ const {frontmatter} = Astro.props;
     h2 {
       @apply font-bold mb-2 text-xl;
     }
-    p:has(img) {
+    p:has(img),
+    .img {
       grid-area: b;
     }
     ul {
