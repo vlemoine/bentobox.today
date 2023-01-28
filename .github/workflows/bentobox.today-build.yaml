@@ -40,7 +40,6 @@ jobs:
           npm install --global yarn
           yarn install --frozen-lockfile
           yarn build
-          yarn generate
 
 # Please do not touch the following action
       - name: Store deployment content
