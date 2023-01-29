@@ -6,6 +6,17 @@ import { Picture } from "@astrojs/image/components";
 
 const { frontmatter, headings, compiledContent } = Astro.props;
 
+const options: Intl.DateTimeFormatOptions = {
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+};
+
+const title = new Date(frontmatter.pubDate).toLocaleDateString(undefined, options);
+
+console.log(new Date(frontmatter.pubDate))
+
 const subheadings = headings.filter((h: any) => {
   return h.depth === 2;
 });
@@ -35,7 +46,9 @@ const lists = compiledContent()
     <div class="grid grid-cols-[auto_1fr] grow overflow-x-hidden">
       <Nav />
       <main class="entry sm:grid py-2 px-4 md:py-4 md:px-8">
-        <h1 id={headings[0].slug}>{headings[0].text}</h1>
+        <h1 id={frontmatter.title}>
+          {title}
+        </h1>
         <div class="img mb-4">
           <Picture
             widths={[400, 800, 1200]}
@@ -69,8 +82,8 @@ const lists = compiledContent()
       "b e"
       "b f"
       "b g";
-    grid-column-gap: theme('spacing.6');
-		grid-auto-rows: min-content;
+    grid-column-gap: theme("spacing.6");
+    grid-auto-rows: min-content;
     h1 {
       @apply font-bold mb-4 text-2xl;
       grid-area: a;
