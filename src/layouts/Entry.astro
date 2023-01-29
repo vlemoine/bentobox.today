@@ -34,15 +34,15 @@ const lists = compiledContent()
     <Header />
     <div class="grid grid-cols-[auto_1fr] grow overflow-x-hidden">
       <Nav />
-      <main class="entry sm:grid py-4 px-8">
+      <main class="entry sm:grid py-2 px-4 md:py-4 md:px-8">
         <h1 id={headings[0].slug}>{headings[0].text}</h1>
-        <div class="img">
+        <div class="img mb-4">
           <Picture
             widths={[400, 800, 1200]}
             aspectRatio="1:1"
             src={frontmatter.image.url}
             alt={frontmatter.image.alt}
-            sizes="xs:480px sm:500px md:380px lg:260px xl:320px"
+            sizes="xs:480px sm:400px lg:520px xl:640px"
           />
         </div>
         <h2 id={subheadings[0].slug}>{subheadings[0].text}</h2>
@@ -55,14 +55,13 @@ const lists = compiledContent()
             </>
           )
         }
-        <!-- <slot /> -->
       </main>
     </div>
   </body>
 </html>
 <style lang="scss" is:global>
   .entry {
-    grid-template-columns: minmax(33vw, calc(100vh - 10rem)) 1fr;
+    grid-template-columns: minmax(33vw, 50vmin) 1fr;
     grid-template-areas:
       "a a"
       "b c"
@@ -70,7 +69,8 @@ const lists = compiledContent()
       "b e"
       "b f"
       "b g";
-    grid-column-gap: 2rem;
+    grid-column-gap: theme('spacing.6');
+		grid-auto-rows: min-content;
     h1 {
       @apply font-bold mb-4 text-2xl;
       grid-area: a;
@@ -78,7 +78,6 @@ const lists = compiledContent()
     h2 {
       @apply font-bold mb-2 text-xl;
     }
-    p:has(img),
     .img {
       grid-area: b;
     }
