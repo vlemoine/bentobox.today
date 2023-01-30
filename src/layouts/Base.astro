@@ -21,9 +21,9 @@ const posts = await Astro.glob("../pages/posts/*.md");
   </head>
   <body class="bg-gray-900 text-white h-full flex flex-col">
     <Header />
-    <div class="grid grid-cols-[10.125rem_1fr] grow h-full overflow-hidden">
+    <div class="grid grid-cols-[7.5rem_1fr] md:grid-cols-[10.125rem_1fr] grow h-full overflow-hidden">
       <Nav />
-      <main class="h-full overflow-auto py-4 px-8">
+      <main class="h-full overflow-y-auto overflow-x-hidden p-4 md:px-8">
         <slot />
       </main>
     </div>
