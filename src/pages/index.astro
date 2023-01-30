@@ -1,6 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
-import CldImage from '../components/CldImage.astro';
+import CldImage from "../components/CldImage.astro";
 const posts = await Astro.glob("../pages/posts/*.md");
 ---
 
@@ -8,16 +8,21 @@ const posts = await Astro.glob("../pages/posts/*.md");
   <h1 class="text-lg font-bold mb-4">Past Boxes</h1>
   <div class="gallery | grid gap-4 auto-rows-max">
     {
-      posts.reverse().map((post) => (
+      posts.reverse().map((post, i) => (
         <a
           href={post.url}
           class="border border-pink-700 bg-pink-900 rounded overflow-hidden text-center"
         >
           <CldImage
-            src={post.frontmatter.image.slug ? post.frontmatter.image.slug : post.frontmatter.image.url}
+            src={
+              post.frontmatter.image.slug
+                ? post.frontmatter.image.slug
+                : post.frontmatter.image.url
+            }
             alt={post.frontmatter.image.alt}
-            width="1268"
-            height="1268"
+            width="500"
+            height="500"
+            loading={i < 7 ? "eager" : "lazy"}
           />
           <h2 class="font-bold my-2">{post.frontmatter.title}</h2>
         </a>
