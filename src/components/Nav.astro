@@ -2,8 +2,8 @@
 const posts = await Astro.glob("../pages/posts/*.{md,mdx}");
 ---
 
-<nav class="bg-pink-900/25 border-r border-r-pink-900 p-2 sm:p-4">
-  <ul class="sticky top-2 sm:top-4 flex flex-col-reverse gap-2">
+<nav class="bg-pink-900/25 border-r border-r-pink-900 p-2 sm:p-4 h-full overflow-auto">
+  <ul class="sm:top-4 flex flex-col-reverse gap-2">
     <li class="mt-2"><a href="/about">🎀 About</a></li>
     {
       posts.map((post) => (
