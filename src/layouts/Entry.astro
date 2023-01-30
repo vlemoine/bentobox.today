@@ -1,8 +1,7 @@
 ---
+import CldImage from '../components/CldImage.astro';
 import Header from "@components/Header.astro";
 import Nav from "@components/Nav.astro";
-
-import { Picture } from "@astrojs/image/components";
 
 const { frontmatter, headings, compiledContent } = Astro.props;
 
@@ -50,12 +49,11 @@ const lists = compiledContent()
           {title}
         </h1>
         <div class="img mb-4">
-          <Picture
-            widths={[1268]}
-            aspectRatio="1:1"
-            src={frontmatter.image.url}
+          <CldImage
+            src={frontmatter.image.slug ? frontmatter.image.slug : frontmatter.image.url}
             alt={frontmatter.image.alt}
-            sizes="xs:480px sm:400px lg:520px xl:640px"
+            width="1268"
+            height="1268"
           />
         </div>
         <h2 id={subheadings[0].slug}>{subheadings[0].text}</h2>
