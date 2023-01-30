@@ -4,18 +4,20 @@ interface Props {
   width: string;
   height: string;
   alt: string;
+  loading?: string;
 }
 import { Cloudinary } from "@cloudinary/url-gen";
+import {scale} from "@cloudinary/url-gen/actions/resize";
 const cld = new Cloudinary({
   cloud: {
     cloudName: "drmor38ma",
   },
 });
-const { src, ...props } = Astro.props;
-let cldSrc = cld.image(src).format("auto").delivery("q_auto");
+const { src, loading, width, ...props } = Astro.props;
+let cldSrc = cld.image(src).format("auto").quality('auto').resize(scale().width(width))
 if (src.startsWith("https://")) {
   cldSrc.setDeliveryType("fetch");
 }
 ---
 
-<img src={cldSrc.toURL()} loading="lazy" {...props} />
+<img src={cldSrc.toURL()} loading={loading ? loading : "lazy"} width={width} {...props} />
