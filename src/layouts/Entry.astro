@@ -1,7 +1,6 @@
 ---
-import CldImage from '../components/CldImage.astro';
-import Header from "@components/Header.astro";
-import Nav from "@components/Nav.astro";
+import CldImage from "../components/CldImage.astro";
+import Base from "@layouts/Base.astro";
 
 const { frontmatter, headings, compiledContent } = Astro.props;
 
@@ -12,9 +11,10 @@ const options: Intl.DateTimeFormatOptions = {
   day: "numeric",
 };
 
-const title = new Date(frontmatter.pubDate).toLocaleDateString(undefined, options);
-
-console.log(new Date(frontmatter.pubDate))
+const title = new Date(frontmatter.pubDate).toLocaleDateString(
+  undefined,
+  options
+);
 
 const subheadings = headings.filter((h: any) => {
   return h.depth === 2;
@@ -31,46 +31,38 @@ const lists = compiledContent()
   });
 ---
 
-<!DOCTYPE html>
-<html lang="en-us" class="h-full">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" href="https://fav.farm/🍱" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{frontmatter.title} | bentobox.today</title>
-  </head>
-  <body class="bg-gray-900 text-white h-full flex flex-col">
-    <Header />
-    <div class="grid grid-cols-[7.5rem_1fr] md:grid-cols-[10.125rem_1fr] grow overflow-hidden">
-      <Nav />
-      <main class="entry sm:grid py-2 px-4 md:py-4 md:px-8">
-        <h1 id={frontmatter.title}>
-          {title}
-        </h1>
-        <div class="img mb-4">
-          <CldImage
-            src={frontmatter.image.slug ? frontmatter.image.slug : frontmatter.image.url}
-            alt={frontmatter.image.alt}
-            width="1268"
-            height="1268"
-          />
-        </div>
-        <h2 id={subheadings[0].slug}>{subheadings[0].text}</h2>
-        <ul set:html={lists[0]} />
-        {
-          lists[1] && (
-            <>
-              <h2 id={subheadings[1].slug}>{subheadings[1].text}</h2>
-              <ul set:html={lists[1]} />
-            </>
-          )
-        }
-      </main>
+<title>{title} | bentobox.today</title>
+<Base>
+  <main class="entry">
+    <h1 id={frontmatter.title}>
+      {title}
+    </h1>
+    <div class="img">
+      <CldImage
+        src={frontmatter.image.slug
+          ? frontmatter.image.slug
+          : frontmatter.image.url}
+        alt={frontmatter.image.alt}
+        width="1268"
+        height="1268"
+      />
     </div>
-  </body>
-</html>
+    <h2 id={subheadings[0].slug}>{subheadings[0].text}</h2>
+    <ul set:html={lists[0]} />
+    {
+      lists[1] && (
+        <>
+          <h2 id={subheadings[1].slug}>{subheadings[1].text}</h2>
+          <ul set:html={lists[1]} />
+        </>
+      )
+    }
+  </main>
+</Base>
 <style lang="scss" is:global>
+  .body {
+    @apply grid grid-cols-[7.5rem_1fr] md:grid-cols-[10.125rem_1fr] grow overflow-hidden;
+  }
   .entry {
     grid-template-columns: minmax(33vw, 50vmin) 1fr;
     grid-template-areas:
@@ -82,18 +74,28 @@ const lists = compiledContent()
       "b g";
     grid-column-gap: theme("spacing.6");
     grid-auto-rows: min-content;
+    @apply sm:grid py-2 px-4 md:py-4 md:px-8;
     h1 {
-      @apply font-bold mb-4 text-2xl;
+      @apply font-bold mb-4 text-2xl text-violet-300;
       grid-area: a;
     }
     h2 {
-      @apply font-bold mb-2 text-xl;
+      @apply font-bold mb-2 text-xl text-violet-200;
     }
     .img {
       grid-area: b;
+      @apply mb-4 border-2 rounded-lg border-violet-700 bg-violet-700 shadow-lg;
     }
     ul {
-      @apply mb-8 text-lg;
+      @apply mb-8 text-lg text-violet-100;
+      max-width: 60ch;
     }
+  }
+  main::-webkit-scrollbar-thumb {
+    @apply bg-violet-500 rounded-full;
+  }
+  main::-webkit-scrollbar {
+    width: theme("spacing.2");
+    @apply bg-black/50;
   }
 </style>
