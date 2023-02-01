@@ -1,8 +1,7 @@
 ---
 import Header from "@components/Header.astro";
 import Nav from "@components/Nav.astro";
-
-const posts = await Astro.glob("../pages/posts/*.md");
+// const posts = await Astro.glob("../pages/posts/*.md");
 ---
 
 <!DOCTYPE html>
@@ -19,15 +18,38 @@ const posts = await Astro.glob("../pages/posts/*.md");
     />
     <meta name="generator" content={Astro.generator} />
     <title>bentobox.today</title>
-    <script src="https://kit.fontawesome.com/f425d92e3b.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/f425d92e3b.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body class="h-full flex flex-col | bg-violet-900/25 text-white">
-    <Header />
-    <div
-      class="grid grid-cols-[7.5rem_1fr] md:grid-cols-[10.125rem_1fr] grow h-full overflow-hidden"
-    >
+    <Header>
+      <button id="menu"><i class="fa-solid fa-bars"></i></button>
+    </Header>
+    <div class="wrapper transition-all">
       <Nav />
       <slot />
     </div>
   </body>
 </html>
+
+<script>
+  document.getElementById("menu")?.addEventListener("click", function () {
+    const nav = document.querySelector("nav");
+    nav?.classList.toggle("p-0");
+    nav?.classList.toggle("scale-x-0");
+    nav?.classList.toggle("h-0");
+    document.querySelector('.wrapper')?.classList.toggle('!grid-cols-1')
+  });
+</script>
+
+<style>
+  #menu {
+    aspect-ratio: 1/1;
+    @apply rounded-full w-12 mr-4 hover:bg-white/25;
+  }
+  .wrapper {
+    @apply grid grid-cols-[7.5rem_1fr] md:grid-cols-[10.125rem_1fr] grow h-full overflow-hidden;
+  }
+</style>
