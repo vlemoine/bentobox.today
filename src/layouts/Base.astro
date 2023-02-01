@@ -35,12 +35,34 @@ import Nav from "@components/Nav.astro";
 </html>
 
 <script>
+  let menuOpen: any = sessionStorage.getItem("menuOpen");
+  if (menuOpen === null) {
+    sessionStorage.setItem("menuOpen", "1");
+    menuOpen = "1";
+  } else {
+    menuOpen = sessionStorage.getItem("menuOpen");
+  }
+  // console.log("onload", menuOpen);
+  const toggle = !!parseInt(menuOpen);
+  const nav = document.querySelector("nav");
+  nav?.classList.toggle("p-0", toggle);
+  nav?.classList.toggle("scale-x-0", toggle);
+  nav?.classList.toggle("h-0", toggle);
+  document.querySelector(".wrapper")?.classList.toggle("!grid-cols-1", toggle);
   document.getElementById("menu")?.addEventListener("click", function () {
+    // console.log("click", menuOpen, !!parseInt(menuOpen));
+    menuOpen = !!parseInt(menuOpen) ? "0" : "1";
+    // console.log("set", menuOpen, !!parseInt(menuOpen));
+    const toggle = !!parseInt(menuOpen);
     const nav = document.querySelector("nav");
-    nav?.classList.toggle("p-0");
-    nav?.classList.toggle("scale-x-0");
-    nav?.classList.toggle("h-0");
-    document.querySelector('.wrapper')?.classList.toggle('!grid-cols-1')
+    nav?.classList.toggle("p-0", toggle);
+    nav?.classList.toggle("scale-x-0", toggle);
+    nav?.classList.toggle("h-0", toggle);
+    document
+      .querySelector(".wrapper")
+      ?.classList.toggle("!grid-cols-1", toggle);
+    sessionStorage.setItem("menuOpen", menuOpen);
+    // console.log("ss", sessionStorage.getItem("menuOpen"));
   });
 </script>
 
