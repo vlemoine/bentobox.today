@@ -1,10 +1,16 @@
 ---
 ---
 
-<header class="p-4 flex text-3xl bg-violet-900 shadow-xl relative z-20">
+<header>
+  <slot/>
   <a href="/"><h1>🍱 bentobox.today</h1></a>
 </header>
+
+
 <style>
+  header {
+    @apply flex items-center relative z-20 shadow-xl px-4 h-16 text-3xl bg-violet-900;
+  }
   h1 {
     font-family: "Itim", cursive;
   }
