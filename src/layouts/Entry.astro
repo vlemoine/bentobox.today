@@ -4,6 +4,8 @@ import Base from "@layouts/Base.astro";
 
 const { frontmatter, headings, compiledContent } = Astro.props;
 
+const comment = compiledContent().search('<p>') > 0 ? compiledContent().split("<p>").pop().split("</p>")[0] : '';
+
 const options: Intl.DateTimeFormatOptions = {
   weekday: "long",
   year: "numeric",
@@ -48,6 +50,7 @@ const lists = compiledContent()
       />
     </div>
     <h2 id={subheadings[0].slug}>{subheadings[0].text}</h2>
+    {comment.length > 0 && <p>{comment}</p>}
     <ul set:html={lists[0]} />
     {
       lists[1] && (
@@ -86,7 +89,7 @@ const lists = compiledContent()
       grid-area: b;
       @apply mb-4 border-2 rounded-lg border-violet-700 bg-violet-700 shadow-lg overflow-hidden;
     }
-    ul {
+    ul, p {
       @apply mb-8 text-lg text-violet-100;
       max-width: 60ch;
     }
