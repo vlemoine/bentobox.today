@@ -5,7 +5,7 @@ import Nav from "@components/Nav.astro";
 ---
 
 <!DOCTYPE html>
-<html lang="en-us" class="h-full bg-gray-900">
+<html lang="en-us">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -13,7 +13,7 @@ import Nav from "@components/Nav.astro";
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Itim&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300;500;700&display=swap"
       rel="stylesheet"
     />
     <meta name="generator" content={Astro.generator} />
@@ -23,9 +23,9 @@ import Nav from "@components/Nav.astro";
       crossorigin="anonymous"
     ></script>
   </head>
-  <body class="h-full flex flex-col | bg-violet-900/25 text-white">
+  <body>
     <Header>
-      <button id="menu"><i class="fa-solid fa-bars"></i></button>
+      <button id="menu" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
     </Header>
     <div class="wrapper transition-all">
       <Nav />
@@ -67,6 +67,16 @@ import Nav from "@components/Nav.astro";
 </script>
 
 <style>
+  html {
+    @apply h-full;
+    /* @apply dark:bg-gray-900; */
+  }
+  body {
+    @apply h-full flex flex-col bg-orange-50;
+    /* @apply dark:bg-violet-900/25 dark:text-white; */
+    font-family: "Zilla Slab", serif;
+    font-weight: 300;
+  }
   #menu {
     aspect-ratio: 1/1;
     @apply rounded-full w-12 mr-4 hover:bg-white/25;
