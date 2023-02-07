@@ -1,35 +1,47 @@
 ---
 import Base from "../layouts/Base.astro";
 import CldImage from "../components/CldImage.astro";
+
 const posts = await Astro.glob("../pages/posts/*.md");
+const showYear = (date: string) =>
+  new Date(date).getFullYear() === new Date().getFullYear()
+    ? undefined
+    : "numeric";
+const title = (date: string) =>
+  new Date(date)
+    .toLocaleDateString(undefined, {
+      year: showYear(date),
+      day: "numeric",
+      month: "long",
+    })
+    .replace(",", "");
 ---
 
 <Base>
   <main
-    class="h-full overflow-y-auto overflow-x-hidden py-2 px-4 md:py-4 md:px-8"
+    class="h-full overflow-y-auto overflow-x-hidden py-2 px-4 md:py-4 md:px-8 md:pb-8"
   >
     <h1>Past Boxes</h1>
-    <div class="gallery | grid gap-4 lg:gap-6 2xl:gap-8 auto-rows-max">
+    <div
+      class="gallery | grid gap-x-4 gap-y-8 xl:gap-8 xl:gap-y-16 auto-rows-max"
+    >
       {
         posts.reverse().map((post, i) => (
-          <a
-            href={post.url}
-            class="bg-violet-600 border-violet-600 border-2 rounded-2xl overflow-hidden text-center drop-shadow-xl relative"
-          >
-            <CldImage
-              src={
-                post.frontmatter.image.slug
-                  ? post.frontmatter.image.slug
-                  : post.frontmatter.image.url
-              }
-              alt={post.frontmatter.image.alt}
-              width="500"
-              height="500"
-              loading={i < 7 ? "eager" : "lazy"}
-            />
-            <h2 class="font-bold text-lg | absolute z-10 bottom-2 | rounded-full border border-violet-500 margin-auto bg-violet-900/75 px-4 py-1 translate-x-1/2 right-1/2 backdrop-blur-sm whitespace-nowrap">
-              {post.frontmatter.title}
-            </h2>
+          <a href={post.url} class="post">
+            <div class="img">
+              <CldImage
+                src={
+                  post.frontmatter.image.slug
+                    ? post.frontmatter.image.slug
+                    : post.frontmatter.image.url
+                }
+                alt={post.frontmatter.image.alt}
+                width="600"
+                height="600"
+                loading={i < 7 ? "eager" : "lazy"}
+              />
+            </div>
+            <h2>{title(post.frontmatter.pubDate)}</h2>
           </a>
         ))
       }
@@ -37,16 +49,17 @@ const posts = await Astro.glob("../pages/posts/*.md");
   </main>
 </Base>
 
-<style>
+<style lang="scss">
   :root {
     --minSize: 288px;
+    --color: theme(colors.pink.900);
   }
   .gallery {
     grid-template-columns: repeat(auto-fill, minmax(var(--minSize), 1fr));
   }
   @media (min-width: theme("screens.2xl")) {
     :root {
-      /* --minSize: 300px; */
+      --minSize: 384px;
     }
   }
   main::-webkit-scrollbar-thumb {
@@ -57,7 +70,79 @@ const posts = await Astro.glob("../pages/posts/*.md");
     @apply bg-black/50;
   }
   h1 {
-    font-family: "Itim", cursive;
-    @apply text-3xl mb-4 text-violet-100;
+    @apply text-3xl mb-4;
+    /* @apply dark:text-violet-100; */
+  }
+  h2 {
+    @apply font-bold text-2xl xl:text-4xl tracking-wide whitespace-nowrap;
+    @apply z-10 translate-x-1/2 -translate-y-1/2 right-1/2;
+    @apply rounded-full border-[1.5px];
+    @apply m-auto px-4 py-1 xl:py-2 xl:px-6;
+    position: absolute;
+    max-width: 100%;
+    /* @apply bg-pink-600/75 text-white; */
+    /* @apply border-violet-500 bg-violet-900/75; */
+  }
+
+  .post {
+    /* @apply dark:bg-violet-600 dark:border-violet-600 dark:drop-shadow-xl; */
+    position: relative;
+    text-align: center;
+    img {
+      transition: transform 300ms;
+    }
+
+    .img {
+      @apply border-[1.5px] rounded-2xl drop-shadow;
+      aspect-ratio: 1/1;
+      border-color: var(--color);
+      background-color: var(--color);
+      overflow: hidden;
+    }
+    &:hover img {
+      transform: scale(1.1);
+    }
+  }
+  .post h2 {
+    @apply text-white;
+    border-color: var(--color);
+    text-shadow: -1px -1px var(--color), -1px 1px var(--color),
+      1px -1px var(--color), 1px 1px var(--color);
+  }
+  .post:nth-child(6n + 1) {
+    h2 {
+      @apply bg-pink-500;
+    }
+    --color: theme(colors.pink.700);
+  }
+  .post:nth-child(6n + 2) {
+    h2 {
+      @apply bg-orange-500;
+    }
+    --color: theme(colors.orange.700);
+  }
+  .post:nth-child(6n + 3) {
+    h2 {
+      @apply bg-yellow-500;
+    }
+    --color: theme(colors.yellow.700);
+  }
+  .post:nth-child(6n + 4) {
+    h2 {
+      @apply bg-cyan-500;
+    }
+    --color: theme(colors.cyan.700);
+  }
+  .post:nth-child(6n + 5) {
+    h2 {
+      @apply bg-blue-500;
+    }
+    --color: theme(colors.blue.700);
+  }
+  .post:nth-child(6n + 6) {
+    h2 {
+      @apply bg-purple-500;
+    }
+    --color: theme(colors.purple.700);
   }
 </style>
