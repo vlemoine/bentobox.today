@@ -9,7 +9,7 @@ const posts = await Astro.glob("../pages/posts/*.{md,mdx}");
       posts.map((post) => (
         <li>
           <a href={post.url} class="text-sm sm:text-base">
-            🎀 {post.frontmatter.title}
+            {post.frontmatter.title}
           </a>
         </li>
       ))
@@ -19,7 +19,8 @@ const posts = await Astro.glob("../pages/posts/*.{md,mdx}");
 
 <style>
   nav {
-    @apply bg-gray-900 p-2 sm:p-4 h-full overflow-auto border-r border-r-violet-800 transition-transform origin-left;
+    @apply bg-pink-100 p-2 sm:p-4 h-full overflow-auto border-r border-r-violet-800 transition-transform origin-left;
+    /* @apply bg-gray-900 ; */
   }
   nav::-webkit-scrollbar {
     width: theme("spacing.2");
