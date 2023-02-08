@@ -79,18 +79,18 @@ const lists = compiledContent()
     grid-auto-rows: min-content;
     @apply sm:grid py-2 px-4 md:py-4 md:px-8 h-full overflow-y-auto;
     h1 {
-      @apply font-bold mb-4 text-2xl text-violet-300 text-center sm:text-left overflow-y-auto;
+      @apply font-bold mb-4 text-3xl text-violet-700 dark:text-yellow-300 text-center sm:text-left overflow-y-auto;
       grid-area: a;
     }
     h2 {
-      @apply font-bold mb-2 text-xl text-violet-200;
+      @apply font-bold mb-2 text-2xl text-cyan-600 dark:text-cyan-200;
     }
     .img {
       grid-area: b;
-      @apply mb-4 border-2 rounded-lg border-violet-700 bg-violet-700 shadow-lg overflow-hidden;
+      @apply mb-4 border-2 rounded-lg border-pink-600 shadow-lg overflow-hidden;
     }
     ul, p {
-      @apply mb-8 text-lg text-violet-100;
+      @apply mb-8 text-xl font-normal leading-relaxed;
       max-width: 60ch;
     }
   }
