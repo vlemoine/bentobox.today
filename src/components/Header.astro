@@ -1,19 +1,47 @@
 ---
 ---
 
-<header>
-  <slot/>
+<header class="bg-yellow-500 dark:bg-violet-900 dark:shadow-xl">
+  <slot />
   <a href="/"><h1>🍱 bentobox.today</h1></a>
+  <button id="theme" class="ml-auto"
+    ><span class="dark:hidden"><i class="fa-solid fa-moon-stars"></i></span><span class="hidden dark:block"><i
+      class="fa-solid fa-sun"></i></span></button
+  >
 </header>
 
+<script>
+  // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+  if (
+    localStorage.theme === "dark" ||
+    (!("theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+  document.getElementById("theme")?.addEventListener("click", function () {
+    if (document.documentElement.classList.contains("dark")) {
+      localStorage.theme = "light";
+      document.documentElement.classList.remove("dark");
+    } else {
+      localStorage.theme = "dark";
+      document.documentElement.classList.add("dark");
+    }
+  });
+</script>
 
 <style>
   header {
-    @apply flex items-center relative z-20  shadow-lg px-4 h-16 text-3xl bg-violet-900 text-white;
-    /* @apply dark:shadow-xl; */
+    @apply flex items-center relative z-20 shadow-lg px-1 lg:px-4 h-16 text-3xl;
   }
   h1 {
-    font-family: 'Zilla Slab', serif;
+    font-family: "Zilla Slab", serif;
     font-weight: 700;
+  }
+  #theme {
+    aspect-ratio: 1/1;
+    @apply rounded-full w-12 hover:bg-gray-500/25;
   }
 </style>
