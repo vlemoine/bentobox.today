@@ -25,7 +25,9 @@ import Nav from "@components/Nav.astro";
   </head>
   <body>
     <Header>
-      <button id="menu" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+      <button id="menu" aria-label="Menu"
+        ><i class="fa-solid fa-bars"></i></button
+      >
     </Header>
     <div class="wrapper transition-all">
       <Nav />
@@ -42,7 +44,6 @@ import Nav from "@components/Nav.astro";
   } else {
     menuOpen = sessionStorage.getItem("menuOpen");
   }
-  // console.log("onload", menuOpen);
   const toggle = !!parseInt(menuOpen);
   const nav = document.querySelector("nav");
   nav?.classList.toggle("p-0", toggle);
@@ -50,9 +51,7 @@ import Nav from "@components/Nav.astro";
   nav?.classList.toggle("h-0", toggle);
   document.querySelector(".wrapper")?.classList.toggle("!grid-cols-1", toggle);
   document.getElementById("menu")?.addEventListener("click", function () {
-    // console.log("click", menuOpen, !!parseInt(menuOpen));
     menuOpen = !!parseInt(menuOpen) ? "0" : "1";
-    // console.log("set", menuOpen, !!parseInt(menuOpen));
     const toggle = !!parseInt(menuOpen);
     const nav = document.querySelector("nav");
     nav?.classList.toggle("p-0", toggle);
@@ -62,24 +61,22 @@ import Nav from "@components/Nav.astro";
       .querySelector(".wrapper")
       ?.classList.toggle("!grid-cols-1", toggle);
     sessionStorage.setItem("menuOpen", menuOpen);
-    // console.log("ss", sessionStorage.getItem("menuOpen"));
   });
 </script>
 
 <style>
   html {
-    @apply h-full;
-    /* @apply dark:bg-gray-900; */
+    @apply h-full bg-gray-900;
   }
   body {
-    @apply h-full flex flex-col bg-orange-50;
-    /* @apply dark:bg-violet-900/25 dark:text-white; */
+    @apply h-full flex flex-col bg-orange-50 text-black/[.9];
+    @apply dark:bg-cyan-900/25 dark:text-white/[.9];
     font-family: "Zilla Slab", serif;
     font-weight: 300;
   }
   #menu {
     aspect-ratio: 1/1;
-    @apply rounded-full w-12 mr-4 hover:bg-white/25;
+    @apply rounded-full w-12 mr-4 hover:bg-gray-500/25;
   }
   .wrapper {
     @apply grid grid-cols-[7.5rem_1fr] md:grid-cols-[10.125rem_1fr] grow h-full overflow-hidden;
