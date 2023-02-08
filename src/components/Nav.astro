@@ -19,14 +19,13 @@ const posts = await Astro.glob("../pages/posts/*.{md,mdx}");
 
 <style>
   nav {
-    @apply bg-pink-100 p-2 sm:p-4 h-full overflow-auto border-r border-r-violet-800 transition-transform origin-left;
-    /* @apply bg-gray-900 ; */
+    @apply bg-pink-500/25 p-2 sm:p-4 h-full overflow-auto border-r border-r-pink-800 transition-transform origin-left;
   }
   nav::-webkit-scrollbar {
     width: theme("spacing.2");
-    @apply bg-black/50;
+    @apply bg-orange-500/25;
   }
   nav::-webkit-scrollbar-thumb {
-    @apply bg-violet-500 rounded-full;
+    @apply  bg-pink-500 rounded-full;
   }
 </style>
