@@ -66,25 +66,28 @@ const title = (date: string) =>
     @apply bg-cyan-500 rounded-full;
   }
   main::-webkit-scrollbar {
-    width: theme("spacing.2");
     @apply bg-blue-500/50;
+    width: theme("spacing.2");
   }
   .h1 {
     @apply text-3xl mb-4;
   }
   h2 {
-    @apply font-bold text-2xl xl:text-4xl tracking-wide whitespace-nowrap;
+    @apply text-2xl xl:text-4xl tracking-wide;
     @apply z-10 translate-x-1/2 -translate-y-1/2 right-1/2;
     @apply rounded-full border-[1.5px];
-    @apply m-auto px-4 py-1 xl:py-2 xl:px-6;
-    position: absolute;
+    @apply px-4 py-1 xl:py-2 xl:px-6;
+    font-weight: bold;
+    margin: auto;
     max-width: 100%;
-    /* @apply bg-pink-600/75 text-white; */
-    /* @apply border-violet-500 bg-violet-900/75; */
+    position: absolute;
+    white-space: nowrap;
+    // @apply bg-pink-600/75 text-white;
+    // @apply border-violet-500 bg-violet-900/75;
   }
 
   .post {
-    /* @apply dark:bg-violet-600 dark:border-violet-600 dark:drop-shadow-xl; */
+    // @apply dark:bg-violet-600 dark:border-violet-600 dark:drop-shadow-xl;
     position: relative;
     text-align: center;
     img {
