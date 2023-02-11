@@ -49,7 +49,7 @@ import Nav from "@components/Nav.astro";
   nav?.classList.toggle("p-0", toggle);
   nav?.classList.toggle("scale-x-0", toggle);
   nav?.classList.toggle("h-0", toggle);
-  document.querySelector(".wrapper")?.classList.toggle("!grid-cols-1", toggle);
+  document.querySelector(".wrapper")?.classList.toggle("!block", toggle);
   document.getElementById("menu")?.addEventListener("click", function () {
     menuOpen = !!parseInt(menuOpen) ? "0" : "1";
     const toggle = !!parseInt(menuOpen);
@@ -59,7 +59,7 @@ import Nav from "@components/Nav.astro";
     nav?.classList.toggle("h-0", toggle);
     document
       .querySelector(".wrapper")
-      ?.classList.toggle("!grid-cols-1", toggle);
+      ?.classList.toggle("!block", toggle);
     sessionStorage.setItem("menuOpen", menuOpen);
   });
 </script>
