@@ -13,3 +13,8 @@ import mdx from "@astrojs/mdx";
 export default defineConfig({
   integrations: [tailwind(), image(), mdx()]
 });
+
+export default defineConfig({
+  site: 'https://vlemoine.github.io',
+  base: '/bentobox.today',
+})
