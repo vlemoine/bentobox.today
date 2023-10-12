@@ -8,7 +8,5 @@ import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://vlemoine.github.io',
-  base: '/bentobox.today',
   integrations: [tailwind(), mdx()]
 });
