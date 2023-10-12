@@ -28,4 +28,7 @@ const posts = await Astro.glob("../pages/posts/*.{md,mdx}");
   nav::-webkit-scrollbar-thumb {
     @apply  bg-pink-500 rounded-full;
   }
+   .hide-nav {
+    @apply p-0 scale-x-0 !h-0 overflow-hidden;
+  }
 </style>

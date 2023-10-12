@@ -29,7 +29,7 @@ import Nav from "@components/Nav.astro";
         ><i class="fa-solid fa-bars"></i></button
       >
     </Header>
-    <div class="wrapper transition-all">
+    <div class="wrapper">
       <Nav />
       <slot />
     </div>
@@ -46,20 +46,16 @@ import Nav from "@components/Nav.astro";
   }
   const toggle = !!parseInt(menuOpen);
   const nav = document.querySelector("nav");
-  nav?.classList.toggle("p-0", toggle);
-  nav?.classList.toggle("scale-x-0", toggle);
-  nav?.classList.toggle("h-0", toggle);
-  document.querySelector(".wrapper")?.classList.toggle("!block", toggle);
+  nav?.classList.toggle("hide-nav", toggle);
+  // document.querySelector(".wrapper")?.classList.toggle("!flex", toggle);
   document.getElementById("menu")?.addEventListener("click", function () {
     menuOpen = !!parseInt(menuOpen) ? "0" : "1";
     const toggle = !!parseInt(menuOpen);
     const nav = document.querySelector("nav");
-    nav?.classList.toggle("p-0", toggle);
-    nav?.classList.toggle("scale-x-0", toggle);
-    nav?.classList.toggle("h-0", toggle);
+    nav?.classList.toggle("hide-nav", toggle);
     document
       .querySelector(".wrapper")
-      ?.classList.toggle("!block", toggle);
+      // ?.classList.toggle("!flex", toggle);
     sessionStorage.setItem("menuOpen", menuOpen);
   });
 </script>
@@ -79,6 +75,6 @@ import Nav from "@components/Nav.astro";
     @apply rounded-full w-12 mr-4 hover:bg-gray-500/25;
   }
   .wrapper {
-    @apply grid grid-cols-[7.5rem_1fr] md:grid-cols-[10.125rem_1fr] grow h-full overflow-hidden;
+    @apply grid grid-cols-[7.5rem_1fr] md:grid-cols-[10.125rem_1fr] grow h-full overflow-hidden transition-all;
   }
 </style>

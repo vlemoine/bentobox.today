@@ -21,7 +21,7 @@ const title = (date: string) =>
 
 <Base>
   <main
-    class="h-full overflow-y-auto overflow-x-hidden py-2 px-4 md:py-4 md:px-8 md:pb-8"
+    class=""
   >
     <h1 class="h1">Past Lunches</h1>
     <div
@@ -67,6 +67,16 @@ const title = (date: string) =>
   @media (min-width: theme("screens.2xl")) {
     :root {
       --minSize: 20rem;
+    }
+  }
+  main {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%;
+    @apply py-2 px-4 md:py-4 md:px-8 md:pb-8;
+    .hide-nav ~ & {
+      grid-column: 1 / span 2;
     }
   }
   main::-webkit-scrollbar-thumb {
